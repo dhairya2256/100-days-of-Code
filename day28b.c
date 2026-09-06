@@ -1,18 +1,22 @@
 #include <stdio.h>
 
-int main(void) {
-	int n;
+int main() {
+    int arr[100], n, i;
 
-	scanf("%d", &n);
-	int numbers[n];
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
 
-	for (int index = 0; index < n; index++) {
-		scanf("%d", &numbers[index]);
-	}
+    printf("Enter %d elements:\n", n);
 
-	for (int index = 0; index < n; index++) {
-		printf("%d ", numbers[index]);
-	}
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
 
-	return 0;
+    printf("Array elements are:\n");
+
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
 }
