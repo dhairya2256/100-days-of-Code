@@ -1,10 +1,11 @@
 #include <stdio.h>
 
 int main(void) {
-	int nums[100];
-	int candidate = 0;
-	int count = 0;
+	int arr[100];
 	int n;
+	int k;
+	int windowSum = 0;
+	int maximumSum;
 
 	printf("Enter number of elements: ");
 	if (scanf("%d", &n) != 1 || n < 0 || n > 100) {
@@ -14,35 +15,30 @@ int main(void) {
 
 	printf("Enter %d elements:\n", n);
 	for (int i = 0; i < n; i++) {
-		if (scanf("%d", &nums[i]) != 1) {
+		if (scanf("%d", &arr[i]) != 1) {
 			printf("Invalid array element.\n");
 			return 1;
 		}
 	}
 
-	for (int i = 0; i < n; i++) {
-		if (count == 0) {
-			candidate = nums[i];
-			count = 1;
-		} else if (nums[i] == candidate) {
-			count++;
-		} else {
-			count--;
+	printf("Enter k: ");
+	if (scanf("%d", &k) != 1 || k <= 0 || k > n) {
+		printf("Invalid value of k.\n");
+		return 1;
+	}
+
+	for (int i = 0; i < k; i++) {
+		windowSum += arr[i];
+	}
+	maximumSum = windowSum;
+
+	for (int i = k; i < n; i++) {
+		windowSum += arr[i] - arr[i - k];
+		if (windowSum > maximumSum) {
+			maximumSum = windowSum;
 		}
 	}
 
-	int frequency = 0;
-	for (int i = 0; i < n; i++) {
-		if (nums[i] == candidate) {
-			frequency++;
-		}
-	}
-
-	if (frequency > n / 2) {
-		printf("%d\n", candidate);
-	} else {
-		printf("-1\n");
-	}
-
+	printf("Maximum sum: %d\n", maximumSum);
 	return 0;
 }
