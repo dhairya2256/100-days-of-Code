@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int roll_no;
+    float marks;
+};
+
+void print_student(struct Student student) {
+    printf("Name: %s\n", student.name);
+    printf("Roll number: %d\n", student.roll_no);
+    printf("Marks: %.2f\n", student.marks);
+}
+
+int main(void) {
+    struct Student student;
+
+    printf("Enter student name: ");
+    if (scanf("%49s", student.name) != 1) {
+        fprintf(stderr, "Could not read student name.\n");
+        return 1;
+    }
+
+    printf("Enter roll number: ");
+    if (scanf("%d", &student.roll_no) != 1) {
+        fprintf(stderr, "Invalid roll number.\n");
+        return 1;
+    }
+
+    printf("Enter marks: ");
+    if (scanf("%f", &student.marks) != 1) {
+        fprintf(stderr, "Invalid marks.\n");
+        return 1;
+    }
+
+    printf("\nStudent details:\n");
+    print_student(student);
+
+    return 0;
+}
